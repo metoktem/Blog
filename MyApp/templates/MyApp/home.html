@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Metinin Uygulaması {% endblock title %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Diğer stil ve script bağlantıları eklenebilir -->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Ana Sayfa <img width="32" height="32"
+                    src="https://img.icons8.com/emoji/48/nazar-amulet.png" alt="nazar-amulet" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav mr-auto mb-lg-50 mb-lg-0">
+
+            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+            <ul class="navbar-nav mr-auto mb-lg-50 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'yenikayit' %}">Kayıt Ol <img width="25" height="25"
+                            src="https://img.icons8.com/dusk/64/new-contact.png" alt="new-contact" /></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'giris' %}">Giriş <img width="28"
+                            height="28"
+                            src="https://img.icons8.com/external-tal-revivo-fresh-tal-revivo/28/external-login-portal-of-company-server-for-office-access-full-fresh-tal-revivo.png"
+                            alt="external-login-portal-of-company-server-for-office-access-full-fresh-tal-revivo" /></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        {% block content %} <!-- Ana içerik burada yerleştirilecek -->
+        <ul>
+            {% for post in post_list %}
+              <li>{{ post.title }}</li>
+            {% endfor %}
+          </ul>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://fastly.picsum.photos/id/259/200/300.jpg?hmac=wDvGK65R1iPnism0nt4UMs0874_1WE8EtgZY73tpFsc"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gönderi 1</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://fastly.picsum.photos/id/188/200/300.jpg?hmac=zXtOB5OFoSyQezQ-b1qLr4dwQ3z1vpR-O6XAY7Dw79w"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gönderi 2</h5>
+                        <p class="card-text">This is a short card.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://fastly.picsum.photos/id/806/200/300.jpg?hmac=IA-MNmLr1ua-cWJTayRkIMVB9ZU-DrSrJUB_8gi-Xpw"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gönderi 3</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://fastly.picsum.photos/id/976/200/300.jpg?hmac=s1Uz9fgJv32r8elfaIYn7pLpQXps7X9oYNwC5XirhO8"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gönderi 4</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+
+    <div class="footer">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">İletişim</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Hakkında</a></li>
+            </ul>
+            <p class="text-center text-muted">© 2023 Metin Oktem</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Metinin Uygulaması {% endblock title %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <!-- Navbar kısmını burada düzenleyebilirsiniz -->
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Ana Sayfa <img width="32" height="32"
+                    src="https://img.icons8.com/emoji/48/nazar-amulet.png" alt="nazar-amulet" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav mr-auto mb-lg-50 mb-lg-0">
+
+            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+            <ul class="navbar-nav mr-auto mb-lg-50 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'yenikayit' %}">Kayıt Ol <img width="25" height="25"
+                            src="https://img.icons8.com/dusk/64/new-contact.png" alt="new-contact" /></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'giris' %}">Giriş <img width="28"
+                            height="28"
+                            src="https://img.icons8.com/external-tal-revivo-fresh-tal-revivo/28/external-login-portal-of-company-server-for-office-access-full-fresh-tal-revivo.png"
+                            alt="external-login-portal-of-company-server-for-office-access-full-fresh-tal-revivo" /></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        {% block content %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <label for="{{ form.username.id_for_label }}" class="col-sm-2 col-form-label">Kullanıcı Adı</label>
+                <div class="col-sm-10">
+                    {{ form.username }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="{{ form.password.id_for_label }}" class="col-sm-2 col-form-label">Şifre</label>
+                <div class="col-sm-10">
+                    {{ form.password }}
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-10 offset-sm-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Giriş Bilgilerimi Hatırla
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        </form>
+
+        {% if form.errors %}
+        <div class="alert alert-danger mt-3">
+            <strong>Uyarı!</strong> Giriş bilgileri hatalı. Lütfen tekrar deneyin.
+        </div>
+        {% endif %}
+
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {% include 'core/footer.html' %} <!-- Footer include edilir -->
+</body>
+
+</html>

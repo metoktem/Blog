@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Yeni Kayıt {% endblock title %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Diğer stil ve script bağlantıları eklenebilir -->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Ana Sayfa <img width="32" height="32" src="https://img.icons8.com/emoji/48/nazar-amulet.png" alt="nazar-amulet"/></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+            <ul class="navbar-nav mr-auto mb-lg-50 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'yenikayit' %}">Kayıt Ol <img width="25" height="25"
+                        src="https://img.icons8.com/dusk/64/new-contact.png" alt="new-contact" /></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'giris' %}">Giriş <img width="28"
+                        height="28"
+                        src="https://img.icons8.com/external-tal-revivo-fresh-tal-revivo/28/external-login-portal-of-company-server-for-office-access-full-fresh-tal-revivo.png"
+                        alt="external-login-portal-of-company-server-for-office-access-full-fresh-tal-revivo" /></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        {% block content %}
+        <!-- Ana içerik burada yerleştirilecek -->
+
+        <div class="form-container">
+            <h2>Yeni Kayıt</h2>
+
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-label">
+                    <label for="{{ form.username.id_for_label }}">Kullanıcı Adı:</label>
+                </div>
+                <div class="form-field">
+                    {{ form.username }}
+                </div>
+
+                <div class="form-label">
+                    <label for="{{ form.first_name.id_for_label }}">Ad:</label>
+                </div>
+                <div class="form-field">
+                    {{ form.first_name }}
+                </div>
+
+                <div class="form-label">
+                    <label for="{{ form.last_name.id_for_label }}">Soyad:</label>
+                </div>
+                <div class="form-field">
+                    {{ form.last_name }}
+                </div>
+
+                <div class="form-label">
+                    <label for="{{ form.email.id_for_label }}">E-posta:</label>
+                </div>
+                <div class="form-field">
+                    {{ form.email }}
+                </div>
+
+                <div class="form-label">
+                    <label for="{{ form.password1.id_for_label }}">Şifre:</label>
+                </div>
+                <div class="form-field">
+                    {{ form.password1 }}
+                </div>
+
+                <div class="form-label">
+                    <label for="{{ form.password2.id_for_label }}">Şifre (Tekrar):</label>
+                </div>
+                <div class="form-field">
+                    {{ form.password2 }}
+                </div>
+
+                <h2>  
+                         
+                </h2>
+                <div class="form-container"> <!-- Ekstra bir container -->
+                    <button type="submit" class="form-button">Kullanıcı Oluştur</button>
+
+                </div>
+            </form>
+        </div>
+                {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}   
+
+
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {% include 'core/footer.html' %} <!-- Footer include edilir -->
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %} Metinin Uygulaması {% endblock title %}</title>
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Diğer stil ve script bağlantıları eklenebilir -->
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Ana Sayfa <img width="32" height="32"
+          src="https://img.icons8.com/emoji/48/nazar-amulet.png" alt="nazar-amulet" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      </div>
+      <ul class="navbar-nav mr-auto mb-lg-50 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'cikis' %}">Çıkış<img width="25" height="25"
+              src="https://img.icons8.com/external-tal-revivo-duo-tal-revivo/25/external-corporate-login-portal-isolated-on-a-white-background-full-duo-tal-revivo.png"
+              alt="external-corporate-login-portal-isolated-on-a-white-background-full-duo-tal-revivo" /></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    {% block content %}
+    <h2>Gönderi Ekle</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Gönderi Ekle</button>
+    </form>
+    {% endblock %}
+  </div>
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  {% include 'core/footer.html' %} <!-- Footer include edilir -->
+</body>
+
+</html>

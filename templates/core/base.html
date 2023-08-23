@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Metinin Uygulaması {% endblock title %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Diğer stil ve script bağlantıları eklenebilir -->
+</head>
+<body>
+    {% include 'core/navbar.html' %}  <!-- Navigasyon çubuğu include edilir -->
+    <div class="container mt-5">
+        {% block content %}  <!-- Ana içerik burada yerleştirilecek -->
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {% include 'core/footer.html' %}  <!-- Footer include edilir -->
+</body>
+</html>
+
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
